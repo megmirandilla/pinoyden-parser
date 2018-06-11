@@ -1,5 +1,6 @@
 import urllib.request
 import copy
+import json
 from bs4 import BeautifulSoup
 
 data = {'user_id':'', 'message':'', 'quotes':''}
@@ -25,3 +26,16 @@ for block in users_block:
 	users.append(block.find("div",{"class":"bigtext"}).find("a").text) 
 
 # print(users)
+
+for i in range(len(posts)):
+	if i==0:
+		data['user_id'] = users[i]
+		data['message'] = posts[i]
+	quote['user_id'] = users[i]
+	quote['message'] = posts[i]
+	quote_list.append(copy.deepcopy(quote))
+
+data['quotes'] = copy.deepcopy(quote_list)
+
+with open('data.json','w') as fp:
+	json.dump(data, fp)
