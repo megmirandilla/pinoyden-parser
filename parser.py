@@ -25,8 +25,6 @@ users = []
 for block in users_block:
 	users.append(block.find("div",{"class":"bigtext"}).find("a").text) 
 
-# print(users)
-
 for i in range(len(posts)):
 	if i==0:
 		data['user_id'] = users[i]
